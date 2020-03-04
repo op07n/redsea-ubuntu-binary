@@ -1,0 +1,40 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+
+          
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        repository: windytan/redsea.git
+        path: main        
+          
+    
+    - name: install
+      run:  sudo apt install git build-essential autoconf libsndfile1-dev libliquid-dev
+
+    - name: autogen
+      run: |
+            cd /home/runner/work/test12/test12/main
+            ./autogen.sh 
+            ls
+            ./configure
+            ls
+            make
+            ls -la src/
+    - name: Publish artefacts
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: '/home/runner/work/test12/test12/main/src/redsea'
+          asset_name: 'redsea'
+          tag: ${{ github.ref }}
+          overwrite: true
+
