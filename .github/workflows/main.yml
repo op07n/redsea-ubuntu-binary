@@ -12,9 +12,7 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v2
       with:
-        submodules: 'true'
-        token: ${{secrets.CI_PAT}}
-        repository: windytan/redsea.git
+        repository: 'https://github.com/windytan/redsea.git'
         path: main        
     
     - name: install
