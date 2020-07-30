@@ -12,7 +12,7 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v2
       with:
-        repository: 'https://github.com/windytan/redsea.git'
+        repository: windytan/redsea
         path: main        
     
     - name: install
